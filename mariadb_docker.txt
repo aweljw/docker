@@ -31,7 +31,7 @@ docker \
   --env MYSQL_DATABASE=${MYSQL_DATABASE} \
   --name ${MYSQL_CONTAINER_NAME} \
   --publish 3306:3306 \
-mariadb;
+mariadb --character-set-server=utf8 --collation-server=utf8_unicode_ci;
 
 
 --최신버전 다운
