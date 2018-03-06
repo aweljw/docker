@@ -1,12 +1,44 @@
-MARIADB_USER="mysql_user1"
+MYSQL_USER="mysql_user1"
+MYSQL_ROOT_PASSWORD="mysql_password"
+MYSQL_PASSWORD="mysql_password"
+MYSQL_DATABASE="mysql_db"
 
-MARIADB_ROOT_PASSWORD="mysql_password"
+//mysql
+MYSQL_CONTAINER_NAME="mysql_con"
+//maria db
+MYSQL_CONTAINER_NAME="mariadb_con"
 
-MARIADB_PASSWORD="mysql_password"
+//mysql
+docker \
+  run \
+  --detach \
+  --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
+  --env MYSQL_USER=${MYSQL_USER} \
+  --env MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+  --env MYSQL_DATABASE=${MYSQL_DATABASE} \
+  --name ${MYSQL_CONTAINER_NAME} \
+  --publish 3306:3306 \
+mysql;
 
-MARIADB_DATABASE="mysql_db"
 
-MARIADB_CONTAINER_NAME="mysql_con" 
+//mariadb
+docker \
+  run \
+  --detach \
+  --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
+  --env MYSQL_USER=${MYSQL_USER} \
+  --env MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+  --env MYSQL_DATABASE=${MYSQL_DATABASE} \
+  --name ${MYSQL_CONTAINER_NAME} \
+  --publish 3306:3306 \
+mariadb;
 
 
-docker \ run \  --detach \  --env MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD} \  --env MARIADB_USER=${MARIADB_USER} \  --env MARIADB_PASSWORD=${MARIADB_PASSWORD} \  --env MARIADB_DATABASE=${MARIADB_DATABASE} \  --name ${MARIADB_CONTAINER_NAME} \  --publish 3306:3306 \ mariadb;
+--최신버전 다운
+docker pull mariadb:latest
+
+--도커 이미지 확인
+docker images
+
+-- 마리아 db 실행
+docker run --name mariadb_con -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
